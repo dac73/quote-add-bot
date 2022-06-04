@@ -16,6 +16,7 @@ const randomTimedStopCommand = require('./src/cmd/timed-stop.js');
 const connection = mysql.createConnection({
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,
+    port: process.env.DB_PORT,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD
 });
@@ -38,8 +39,7 @@ client.on('message', msg => {
 
     cmdParser.setMessage(msg.content);
 
-    if(cmdParser.isCommand())
-    {
+    if (cmdParser.isCommand()) {
         cmdParser.exec(msg);
 
         // msg.reply(cmdParser.exec(msg.author.username))

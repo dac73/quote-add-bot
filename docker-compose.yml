@@ -10,7 +10,6 @@ services:
       MYSQL_PASSWORD: $MYSQL_PASSWORD
       MYSQL_DATABASE: $MYSQL_DATABASE
     ports:
-      - "3306:3306"
       - "33060:33060"
     volumes:
       - "egobot_mysql_data:/var/lib/mysql"
@@ -25,6 +24,7 @@ services:
       DB_USERNAME: $MYSQL_USER
       DB_PASSWORD: $MYSQL_PASSWORD
       DB_DATABASE: $MYSQL_DATABASE
+      DB_PORT: 33060
       BOT_TOKEN: $BOT_TOKEN
 
 volumes:
