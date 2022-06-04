@@ -1,0 +1,13 @@
+{
+  "name": "m0o0oo0o",
+  "version": "1.0.0",
+  "description": "Debil bot",
+  "main": "debos.js",
+  "author": "mihalj vukelja",
+  "dependencies": {
+    "discord.io": "^2.5.3",
+    "discord.js": "^11.4.2",
+    "mysql2": "2.1.0",
+    "winston": "^3.2.1"
+  }
+}

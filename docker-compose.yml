@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  egobot_mysql:
+    image: mysql:8
+    container_name: egobot_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    volumes:
+      - "egobot_mysql_data:/var/lib/mysql"
+
+  egobot_node:
+    image: quote-add-bot-node:1.0.0
+    build: ./bot
+    container_name: egobot_node
+    restart: always
+    environment:
+      DB_HOST: egobot_mysql
+      DB_USERNAME: $MYSQL_USER
+      DB_PASSWORD: $MYSQL_PASSWORD
+      DB_DATABASE: $MYSQL_DATABASE
+      BOT_TOKEN: $BOT_TOKEN
+
+volumes:
+  egobot_mysql_data:
+    name: egobot_mysql_data
