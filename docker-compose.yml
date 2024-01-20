@@ -14,6 +14,12 @@ services:
       - 33060
     volumes:
       - "egobot_mysql_data:/var/lib/mysql"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - egobot_network
 
   egobot_node:
     image: quote-add-bot-node:1.0.0
@@ -26,7 +32,16 @@ services:
       DB_PASSWORD: $MYSQL_PASSWORD
       DB_DATABASE: $MYSQL_DATABASE
       BOT_TOKEN: $BOT_TOKEN
+    depends_on:
+      egobot_mysql:
+        condition: service_healthy
+    networks:
+      - egobot_network
 
 volumes:
   egobot_mysql_data:
     name: egobot_mysql_data
+
+networks:
+  egobot_network:
+    driver: bridge
