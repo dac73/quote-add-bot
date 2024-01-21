@@ -1,5 +1,9 @@
+require('dotenv').config();
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const intents = Discord.GatewayIntentBits;
+const client = new Discord.Client({
+    intents: [intents.Guilds, intents.GuildMessages, intents.MessageContent]
+});
 const mysql = require('mysql2');
 
 const Command = require('./src/Command.js');
@@ -10,7 +14,6 @@ const idCommand = require('./src/cmd/id.js');
 const randomCommand = require('./src/cmd/random.js');
 const randomTimedStartCommand = require('./src/cmd/timed-start.js');
 const randomTimedStopCommand = require('./src/cmd/timed-stop.js');
-
 
 // create the connection to database
 const connection = mysql.createConnection({
@@ -34,16 +37,12 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', msg => {
-
+client.on('messageCreate', msg => {
     cmdParser.setMessage(msg.content);
 
     if (cmdParser.isCommand()) {
         cmdParser.exec(msg);
-
-        // msg.reply(cmdParser.exec(msg.author.username))
     }
-
 
     if (msg.content === 'ping') {
         msg.reply('pong');
