@@ -15,15 +15,17 @@ module.exports = {
                     return msg.reply('Nothing found matching ' + content);
                 }
 
-                return msg.reply({embed: {
-                    color: 3447003,
-                    title: `Matching quote ID #${result[0].id}`,
-                    description: result[0].content,
-                    author: {
-                        name: result[0].author
-                    },
-                    timestamp: result[0].created_at
-                }});
+                return msg.reply({embeds: [
+                    {
+                        color: 3447003,
+                        title: `Matching quote ID #${result[0].id}`,
+                        description: result[0].content,
+                        author: {
+                            name: result[0].author
+                        },
+                        timestamp: result[0].created_at
+                    }]
+                });
 
             }
         );

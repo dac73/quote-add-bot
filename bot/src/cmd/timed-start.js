@@ -23,15 +23,17 @@ module.exports = {
                         return msg.channel.send(`No such quote: ${id}`)
                     }
 
-                    return msg.channel.send({embed: {
-                        color: 3447003,
-                        title: `Random nagrada od mentalnog proljeva`,
-                        description: result[0].content,
-                        author: {
-                            name: result[0].author
-                        },
-                        timestamp: new Date()
-                    }});
+                    return msg.channel.send({embeds: [
+                        {
+                            color: 3447003,
+                            title: `Random nagrada od mentalnog proljeva`,
+                            description: result[0].content,
+                            author: {
+                                name: result[0].author
+                            },
+                            timestamp: new Date()
+                        }]
+                    });
 
                 }
             );
