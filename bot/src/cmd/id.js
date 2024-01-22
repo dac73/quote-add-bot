@@ -16,15 +16,17 @@ module.exports = {
                     return msg.reply(`No such quote: ${id}`)
                 }
 
-                return msg.reply({embed: {
-                    color: 3447003,
-                    title: `Matching quote ID #${id}`,
-                    description: result[0].content,
-                    author: {
-                        name: result[0].author
-                    },
-                    timestamp: new Date()
-                }});
+                return msg.reply({embeds: [
+                    {
+                        color: 3447003,
+                        title: `Matching quote ID #${id}`,
+                        description: result[0].content,
+                        author: {
+                            name: result[0].author
+                        },
+                        timestamp: new Date()
+                    }]
+                });
 
             }
         );
