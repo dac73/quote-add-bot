@@ -4,7 +4,7 @@ module.exports = {
     exec(id, msg, mysql, cmd) {
 
         return mysql.query(
-            'DELETE FROM quotes WHERE id = ?',
+            'UPDATE QUOTES SET is_deleted = 1 WHERE id = ?',
             [id],
             function(err, result) {
 

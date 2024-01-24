@@ -4,7 +4,7 @@ module.exports = {
     exec(content, msg, mysql, cmd) {
 
         return mysql.execute(
-            'INSERT INTO quotes (author, content, created_at) VALUES (?, ?, NOW())',
+            'INSERT INTO quotes (author, content, created_at, is_deleted) VALUES (?, ?, NOW(), 0)',
             [msg.author.username, content],
             function(err, result) {
 
