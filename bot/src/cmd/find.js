@@ -3,7 +3,7 @@ module.exports = {
 
     exec(content, msg, mysql, cmd) {
         return mysql.query(
-            "SELECT id, author, content, created_at FROM quotes WHERE content LIKE CONCAT('%', ?, '%') ORDER BY RAND() LIMIT 1",
+            "SELECT id, author, content, created_at FROM quotes WHERE is_deleted = 0 AND content LIKE CONCAT('%', ?, '%') ORDER BY RAND() LIMIT 1",
             [content],
             function(err, result) {
                 if(err) {

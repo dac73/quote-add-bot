@@ -11,7 +11,7 @@ module.exports = {
         const interval_id = setInterval(() => {
 
             return mysql.query(
-                'SELECT author, content, created_at FROM quotes ORDER BY RAND() LIMIT 1',
+                'SELECT author, content, created_at FROM quotes WHERE is_deleted = 0 ORDER BY RAND() LIMIT 1',
                 [id],
                 function(err, result) {
                     if(err) {

@@ -4,7 +4,7 @@ module.exports = {
     exec(id, msg, mysql, cmd) {
 
         return mysql.query(
-            'SELECT author, content, created_at FROM quotes WHERE id = ?',
+            'SELECT author, content, created_at FROM quotes WHERE is_deleted = 0 AND id = ?',
             [id],
             function(err, result) {
                 if(err) {
