@@ -1,13 +1,12 @@
 module.exports = {
     signature: 'del',
 
-    exec(id, msg, mysql, cmd) {
+    exec(id, msg, mysqlPool, cmd) {
 
-        return mysql.execute(
-            'UPDATE quotes SET is_deleted = 1 WHERE id = ?',
+        return await mysqlPool.execute(
+            'UPDATE quotes SET deleted_at = NOW() WHERE id = ?',
             [id],
             function(err, result) {
-
                 if(err) {
                     return msg.reply('Error: ', err);
                 }

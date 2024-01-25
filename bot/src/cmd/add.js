@@ -1,13 +1,12 @@
 module.exports = {
     signature: 'add',
 
-    exec(content, msg, mysql, cmd) {
+    exec(content, msg, mysqlPool, cmd) {
 
-        return mysql.execute(
-            'INSERT INTO quotes (author, content, created_at, is_deleted) VALUES (?, ?, NOW(), 0)',
+        return await mysqlPool.execute(
+            'INSERT INTO quotes (author, content, created_at, deleted_at) VALUES (?, ?, NOW(), NULL)',
             [msg.author.username, content],
             function(err, result) {
-
                 msg.reply(`Quote added, ID: ${result.insertId}!`);
             }
         );
