@@ -3,7 +3,7 @@ module.exports = {
 
     exec(id, msg, mysql, cmd) {
 
-        const interval = 5 * 60 * 1000;
+        const interval = 24 * 60 * 60 * 1000;
 
         // clear existing interval
         cmd.stopInterval();
@@ -42,6 +42,6 @@ module.exports = {
 
         cmd.setIntervalID(interval_id);
 
-        msg.reply('Bot spama svakih 5 minuta. da zatvori radnju, napiši !quote bullshit-stop')
+        msg.reply('Bot spama svakih 24*60 minuta. da zatvori radnju, napiši !quote bullshit-stop')
     }
 };
