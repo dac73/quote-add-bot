@@ -3,7 +3,7 @@ module.exports = {
 
     exec(id, msg, mysqlPool, cmd) {
 
-        return await mysqlPool.query(
+        return mysqlPool.query(
             'SELECT author, content, created_at FROM quotes WHERE deleted_at IS NULL AND id = ?',
             [id],
             function (err, result) {

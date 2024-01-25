@@ -3,7 +3,7 @@ module.exports = {
 
     exec(id, msg, mysqlPool, cmd) {
 
-        return await mysqlPool.execute(
+        return mysqlPool.execute(
             'UPDATE quotes SET deleted_at = NOW() WHERE id = ?',
             [id],
             function(err, result) {

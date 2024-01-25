@@ -10,7 +10,7 @@ module.exports = {
 
         const interval_id = setInterval(() => {
 
-            return await mysqlPool.query(
+            return mysqlPool.query(
                 'SELECT author, content, created_at FROM quotes WHERE deleted_at IS NULL ORDER BY RAND() LIMIT 1',
                 [id],
                 function (err, result) {

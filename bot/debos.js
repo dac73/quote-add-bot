@@ -16,7 +16,7 @@ const randomTimedStartCommand = require('./src/cmd/timed-start.js');
 const randomTimedStopCommand = require('./src/cmd/timed-stop.js');
 
 // create the pool for connection to database
-const pool = await mysql.createPool({
+const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,
     database: process.env.DB_DATABASE,

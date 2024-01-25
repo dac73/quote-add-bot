@@ -2,7 +2,7 @@ module.exports = {
     signature: 'find',
 
     exec(content, msg, mysqlPool, cmd) {
-        return await mysqlPool.query(
+        return mysqlPool.query(
             "SELECT id, author, content, created_at FROM quotes WHERE deleted_at IS NULL AND content LIKE CONCAT('%', ?, '%') ORDER BY RAND() LIMIT 1",
             [content],
             function (err, result) {

@@ -3,7 +3,7 @@ module.exports = {
 
     exec(content, msg, mysqlPool, cmd) {
 
-        return await mysqlPool.execute(
+        return mysqlPool.execute(
             'INSERT INTO quotes (author, content, created_at, deleted_at) VALUES (?, ?, NOW(), NULL)',
             [msg.author.username, content],
             function(err, result) {
