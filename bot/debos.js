@@ -4,7 +4,7 @@ const intents = Discord.GatewayIntentBits;
 const client = new Discord.Client({
     intents: [intents.Guilds, intents.GuildMessages, intents.MessageContent]
 });
-const mysql = require('mysql2/promise');
+const mysql = require('mysql2');
 
 const Command = require('./src/Command.js');
 const addCommand = require('./src/cmd/add.js');
