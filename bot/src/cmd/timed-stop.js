@@ -1,7 +1,7 @@
 module.exports = {
     signature: 'bullshit-stop',
 
-    exec(id, msg, mysql, cmd) {
+    exec(id, msg, mysqlPool, cmd) {
 
         cmd.stopInterval();
 

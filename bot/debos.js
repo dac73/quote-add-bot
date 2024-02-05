@@ -15,15 +15,15 @@ const randomCommand = require('./src/cmd/random.js');
 const randomTimedStartCommand = require('./src/cmd/timed-start.js');
 const randomTimedStopCommand = require('./src/cmd/timed-stop.js');
 
-// create the connection to database
-const connection = mysql.createConnection({
+// create the pool for connection to database
+const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USERNAME,
     database: process.env.DB_DATABASE,
     password: process.env.DB_PASSWORD
 });
 
-const cmdParser = new Command(connection);
+const cmdParser = new Command(pool);
 
 cmdParser.addCommand(addCommand.signature, addCommand);
 cmdParser.addCommand(findCommand.signature, findCommand);

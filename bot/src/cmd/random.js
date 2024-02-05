@@ -1,11 +1,12 @@
 module.exports = {
     signature: 'random',
 
-    exec(content, msg, mysql, cmd) {
-        return mysql.query(
-            "SELECT id, author, content, created_at FROM quotes WHERE is_deleted = 0 ORDER BY RAND() LIMIT 1",
+    exec(content, msg, mysqlPool, cmd) {
+        return mysqlPool.query(
+            "SELECT id, author, content, created_at FROM quotes WHERE deleted_at IS NULL ORDER BY RAND() LIMIT 1",
             [content],
-            function(err, result) {
+            function (err, result) {
+
                 if(err) {
                     return msg.reply('Error: ', err);
                 }

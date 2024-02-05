@@ -1,7 +1,7 @@
 module.exports = {
     signature: 'bullshit-start',
 
-    exec(id, msg, mysql, cmd) {
+    exec(id, msg, mysqlPool, cmd) {
 
         const interval = 24 * 60 * 60 * 1000;
 
@@ -10,10 +10,11 @@ module.exports = {
 
         const interval_id = setInterval(() => {
 
-            return mysql.query(
-                'SELECT author, content, created_at FROM quotes WHERE is_deleted = 0 ORDER BY RAND() LIMIT 1',
+            return mysqlPool.query(
+                'SELECT author, content, created_at FROM quotes WHERE deleted_at IS NULL ORDER BY RAND() LIMIT 1',
                 [id],
-                function(err, result) {
+                function (err, result) {
+
                     if(err) {
                         return msg.channel.send('Error: ', err);
                     }

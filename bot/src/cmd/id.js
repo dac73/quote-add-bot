@@ -1,12 +1,13 @@
 module.exports = {
     signature: 'id',
 
-    exec(id, msg, mysql, cmd) {
+    exec(id, msg, mysqlPool, cmd) {
 
-        return mysql.query(
-            'SELECT author, content, created_at FROM quotes WHERE is_deleted = 0 AND id = ?',
+        return mysqlPool.query(
+            'SELECT author, content, created_at FROM quotes WHERE deleted_at IS NULL AND id = ?',
             [id],
-            function(err, result) {
+            function (err, result) {
+
                 if(err) {
                     return msg.reply('Error: ', err);
                 }
