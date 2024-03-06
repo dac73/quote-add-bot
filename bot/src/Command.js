@@ -68,6 +68,14 @@ module.exports = class Command
 
         content = content.replace(temp[0], '');
         content = content.replace(temp[1], '');
+
+        var rgx = /^\n|\r.*$/;
+
+        if(temp.length == 3 && temp[2].search(rgx) != -1)
+        {
+            content.replace(rgx, '');
+        }
+        
         content = content.trim();
 
         let rgx = /^\n|\r|\r\n.*$/;
