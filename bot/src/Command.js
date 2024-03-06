@@ -71,7 +71,7 @@ module.exports = class Command
 
         var rgx = /^\n|\r.*$/;
 
-        if(temp.search(rgx) != -1)
+        if(temp[2].search(rgx) != -1)
         {
             content.replace(rgx, '');
         }
